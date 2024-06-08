@@ -34,6 +34,9 @@ app.post("/gettoken",isLoggedIn)
 app.use("/admin",adminRouter)
 app.use("/users",userRouter);
 app.use("/payment",paymentRouter);
+app.get("/",(req,res)=>{
+    res.send("path does not exist");
+})
 app.listen(8000,()=>{
     console.log("App is listening to port 8080");
 })
