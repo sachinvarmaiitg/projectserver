@@ -23,6 +23,7 @@
     "moment-timezone": "^0.5.45",
     "mongoose": "^8.3.5",
     "nodemon": "^3.1.0",
-    "razorpay": "^2.9.4"
+    "razorpay": "^2.9.4",
+    "connect-mongo": "^5.1.0"
   }
 }
