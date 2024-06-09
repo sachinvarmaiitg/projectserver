@@ -25,7 +25,7 @@ async function main() {
   await mongoose.connect(dbURL);
 }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
