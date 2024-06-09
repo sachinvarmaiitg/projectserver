@@ -21,7 +21,7 @@ main(
 
 
 async function main() {
-  await mongoose.connect(dbURL);
+  await mongoose.connect(process.env.MONGODB_URI);
 }
 
 app.use(cors(corsOptions));
