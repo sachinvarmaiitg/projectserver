@@ -1,8 +1,9 @@
 function parseDateTime(dateString, timeString) {
-    const dateTimeString = `${dateString}T${timeString}`;
-  const date = new Date(dateTimeString);
-  return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+    const dte = `${dateString}T${timeString}`;
+    var time = new Date(dte);
+    time =   time.toLocaleTimeString('en-US', { hour12: false });
+    const newdate= `${dateString}T${time}`;
+    return new Date(newdate);
 }
-
 
 module.exports = parseDateTime;
