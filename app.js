@@ -29,12 +29,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({
-    secret: '987363633',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } 
-}));
+
 
 app.post("/gettoken",isLoggedIn)
 app.use("/admin",adminRouter)
