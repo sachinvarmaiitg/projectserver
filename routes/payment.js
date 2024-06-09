@@ -38,7 +38,7 @@ router.post("/validatePayment",(req,res)=>{
         return res.status(400).json({msg:"Transaction Failed"});
     }
     const token=jwt.sign({id:razorpay_payment_id},process.env.JWT_SECRET,{expiresIn:15});
-    res.cookie("token",token);
+   req.session.token=token;
     res.json({
         msg:"success",
         orderId:razorpay_order_id,
@@ -50,9 +50,9 @@ router.post("/validatePayment",(req,res)=>{
     
 })
 
-router.post("/addbooking",(req,res)=>{
+router.post("/addbooking",async(req,res)=>{
     try{
-    const token=req.cookies.token;
+    const token=req.session.token;
    let {flightid1,flightid2,paymentId,travellerDetails,currUser}=req.body;
      if(!token){
         res.status(401).json("token not valid");

@@ -4,9 +4,8 @@ const app=express();
 const cors=require('cors');
 const bodyParser=require('body-parser')
 const dbURL=process.env.ATLAS_URL;
-corsOptions ={
-    origin:'http://localhost:3000', 
-        withcredentials:true,            //access-control-allow-credentials:true
+const corsOptions ={
+        origin:'https://projectclientside.vercel.app',
         optionSuccessStatus:200,
         methods:["POST","GET","DELETE"],
     }
@@ -25,11 +24,18 @@ async function main() {
   await mongoose.connect(dbURL);
 }
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(session({
+    secret: '987363633',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } 
+}));
+
 app.post("/gettoken",isLoggedIn)
 app.use("/admin",adminRouter)
 app.use("/users",userRouter);
