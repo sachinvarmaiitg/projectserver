@@ -18,6 +18,7 @@ router.post("/getorderid",async(req,res)=>{
     const options=req.body;
     const order=await razorpay.orders.create(options)
     if(!order){
+        
         return res.status(500).send("Payment cannot completed");
     }
     res.json(order);
@@ -45,6 +46,7 @@ router.post("/validatePayment",(req,res)=>{
         paymentId:razorpay_payment_id,
     })
     }catch(err){
+        console.log(err)
         res.status(404).json({msg:"payment failed!"})
     }
     
