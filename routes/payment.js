@@ -53,8 +53,9 @@ router.post("/validatePayment",(req,res)=>{
 })
 
 router.post("/addbooking",async(req,res)=>{
+      
     try{
-    console.log(req.session)
+  
     const token=req.session.token;
    let {flightid1,flightid2,paymentId,travellerDetails,currUser}=req.body;
      if(!token){
@@ -97,6 +98,7 @@ router.post("/addbooking",async(req,res)=>{
         })
     }
     }catch(err){
+        console.log(req.session)
         console.log(err);
     }
 })
