@@ -38,8 +38,6 @@ router.post("/validatePayment",(req,res)=>{
     if((digest!==razorpay_signature)){
         return res.status(400).json({msg:"Transaction Failed"});
     }
-    const token=jwt.sign({id:razorpay_payment_id},process.env.JWT_SECRET,{expiresIn:15});
-   req.session.token=token;
     res.json({
         msg:"success",
         orderId:razorpay_order_id,
@@ -55,15 +53,8 @@ router.post("/validatePayment",(req,res)=>{
 router.post("/addbooking",async(req,res)=>{
       
     try{
-  
-    const token=req.session.token;
+
    let {flightid1,flightid2,paymentId,travellerDetails,currUser}=req.body;
-     if(!token){
-        res.status(401).json("token not valid");
-    }else{
-        jwt.verify(token,process.env.JWT_SECRET,async(err,decoded)=>{
-            if(err)return res.status(401).json("token is wrong");
-            else{
                 var passengers;
                 if(travellerDetails){
                     passengers=travellerDetails[0].length+travellerDetails[1].length;
@@ -94,11 +85,8 @@ router.post("/addbooking",async(req,res)=>{
                     });
                     
                 }  
-            }
-        })
-    }
+            
     }catch(err){
-        console.log(req.session)
         console.log(err);
     }
 })
