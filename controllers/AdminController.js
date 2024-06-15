@@ -46,7 +46,7 @@ module.exports.GetUsers=async(req,res)=>{
 module.exports.GetActiveFlights=async(req,res)=>{
     try{
         const resp=await Flight.find();
-        resp.sort((a,b)=>b.departureDateTime-a.departureDateTime)
+        resp.sort((a,b)=>a.departureDateTime-b.departureDateTime)
         res.send(resp);
     }catch(err){
         res.staus(500).json({ msg: "Internal server error! retry", error: err.message });
