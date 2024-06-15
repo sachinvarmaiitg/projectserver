@@ -40,7 +40,7 @@ module.exports.GetResults=async (req,res)=>{
             return rDate.toLocaleDateString() === newDate.toLocaleDateString() &&
                 rDate.getTime() > todaydate.getTime(); // Compare times using getTime()
             });
-                res.send(newresp)
+                res.send(newresp.sort((a,b)=>b.price-a.price));
             }
             // else{
             //     const r1=await Flight.find({departureAirport:from,arrivalAirport:to,seatClass:Class,availableSeats:{$gte:adult+child},
