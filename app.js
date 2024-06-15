@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongo');
 const bodyParser=require('body-parser')
 const dbURL=process.env.ATLAS_URL;
 const corsOptions ={
-        origin:'https://projectclientside.vercel.app',
+        origin:['https://projectclientside.vercel.app',"http://localhost:3000"],
         optionSuccessStatus:200,
         methods:["POST","GET","DELETE"],
     }
